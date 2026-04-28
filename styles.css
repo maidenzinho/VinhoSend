@@ -416,3 +416,130 @@ html.dark .icon-moon { display: none; }
   .hero-section { padding-top: 42px; }
   .features-section { padding: 62px 0; }
 }
+
+
+.alerta {
+  padding: 12px 14px;
+  border-radius: 14px;
+  margin: 14px 0;
+  font-weight: 700;
+}
+.alerta-sucesso {
+  background: rgba(32, 130, 91, 0.15);
+  color: #1d6d4d;
+  border: 1px solid rgba(32, 130, 91, 0.30);
+}
+.alerta-erro {
+  background: rgba(160, 38, 51, 0.14);
+  color: #8f2230;
+  border: 1px solid rgba(160, 38, 51, 0.28);
+}
+.painel-main {
+  padding: 42px 0 70px;
+  flex: 1;
+}
+.painel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.painel-header h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin: 0 0 8px;
+}
+.eyebrow {
+  color: var(--primary);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin: 0 0 8px;
+}
+.painel-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 430px) 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.painel-card {
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 24px;
+}
+html.dark .painel-card {
+  background: rgba(255, 255, 255, 0.04);
+}
+.painel-card h2 {
+  margin-top: 0;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+select, textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--background);
+  color: var(--foreground);
+  outline: none;
+}
+textarea {
+  resize: vertical;
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+.tabela-vinhos {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabela-vinhos th, .tabela-vinhos td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: middle;
+}
+.tabela-vinhos th {
+  color: var(--primary);
+  font-weight: 800;
+}
+.acoes {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.acoes form {
+  margin: 0;
+}
+.table-link, .table-danger {
+  border: none;
+  background: transparent;
+  color: var(--primary);
+  font-weight: 800;
+  padding: 0;
+}
+.table-danger {
+  color: #a02633;
+}
+.empty-state {
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  color: var(--muted-foreground);
+}
+@media (max-width: 900px) {
+  .painel-header, .painel-grid {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

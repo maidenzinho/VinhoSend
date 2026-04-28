@@ -12,9 +12,8 @@
     });
   }
 
-  const passwordInput = document.getElementById('password');
+  const passwordInput = document.getElementById('senha');
   const togglePassword = document.getElementById('togglePassword');
-  const confirmInput = document.getElementById('confirmPassword');
 
   if (passwordInput && togglePassword) {
     const icon = togglePassword.querySelector('i');
@@ -24,21 +23,6 @@
       if (icon) {
         icon.className = showing ? 'bi bi-eye' : 'bi bi-eye-slash';
       }
-    });
-  }
-
-  const authForm = document.getElementById('authForm');
-  if (authForm) {
-    authForm.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      if (confirmInput && passwordInput && confirmInput.value !== passwordInput.value) {
-        alert('As senhas não coincidem.');
-        return;
-      }
-
-      const isRegisterPage = document.body.dataset.page === 'registro';
-      alert(isRegisterPage ? 'Conta criada com sucesso!' : 'Login realizado!');
     });
   }
 })();

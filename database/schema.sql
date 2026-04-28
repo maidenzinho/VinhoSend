@@ -1,0 +1,37 @@
+CREATE DATABASE IF NOT EXISTS vinhosend_ra2 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE vinhosend_ra2;
+
+CREATE TABLE IF NOT EXISTS usuarios (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(120) NOT NULL,
+  email VARCHAR(180) NOT NULL UNIQUE,
+  senha_hash VARCHAR(255) NOT NULL,
+  tentativas_login INT NOT NULL DEFAULT 0,
+  bloqueado_ate DATETIME NULL,
+  criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS vinhos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  usuario_id INT NOT NULL,
+  nome VARCHAR(120) NOT NULL,
+  tipo VARCHAR(60) NOT NULL,
+  pais VARCHAR(80) NOT NULL,
+  safra INT NOT NULL,
+  nota DECIMAL(3,1) NOT NULL,
+  descricao TEXT NULL,
+  criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  atualizado_em DATETIME NULL,
+  CONSTRAINT fk_vinhos_usuarios FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS auditoria (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  usuario_id INT NULL,
+  acao VARCHAR(80) NOT NULL,
+  detalhes VARCHAR(255) NULL,
+  ip VARCHAR(45) NULL,
+  criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_auditoria_usuario (usuario_id),
+  CONSTRAINT fk_auditoria_usuarios FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
