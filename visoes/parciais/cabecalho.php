@@ -10,7 +10,7 @@ $paginaAtual = $paginaAtual ?? '';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= escapar($tituloPagina) ?></title>
-  <meta name="description" content="VinhoSend — conectando pessoas, compartilhando histórias.">
+  <meta name="description" content="VinhoSend — Controle estoque, pedidos, fornecedores e financeiro em uma única plataforma.">
   <meta name="author" content="VinhoSend">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
