@@ -16,7 +16,7 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
     <div>
       <p class="eyebrow">Histórico do comprador</p>
       <h1>Minhas compras</h1>
-      <p>Acompanhe as reservas feitas no marketplace e os valores negociados.</p>
+      <p>Acompanhe suas encomendas, forma de pagamento e nota fiscal emitida.</p>
     </div>
     <a href="marketplace.php" class="pill-btn pill-primary">Comprar vinhos</a>
   </section>
@@ -29,53 +29,39 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
     <?php if (!$compras): ?>
       <p class="empty-state">Você ainda não reservou compras.</p>
     <?php else: ?>
-      <div class="table-wrap">
-        <table class="tabela-vinhos">
-          <thead>
-            <tr>
-              <th>Foto</th>
-              <th>Anúncio</th>
-              <th>Vendedor</th>
-              <th>Qtd.</th>
-              <th>Preço unit.</th>
-              <th>Total</th>
-              <th>Status</th>
-              <th>Entrega</th>
-              <th>Ação</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($compras as $compra): ?>
-              <tr>
-                <td>
-                  <?php if (!empty($compra['imagem'])): ?>
-                    <img src="<?= escapar($compra['imagem']) ?>" alt="Foto de <?= escapar($compra['vinho_nome']) ?>" class="thumb-vinho">
-                  <?php else: ?>
-                    <span class="thumb-placeholder"><i class="bi bi-image"></i></span>
-                  <?php endif; ?>
-                </td>
-                <td><?= escapar($compra['titulo']) ?></td>
-                <td><?= escapar($compra['vendedor_nome']) ?></td>
-                <td><?= escapar((string)$compra['quantidade']) ?></td>
-                <td>R$ <?= number_format((float)$compra['preco_unitario'], 2, ',', '.') ?></td>
-                <td>R$ <?= number_format((float)$compra['total'], 2, ',', '.') ?></td>
-                <td><span class="status-chip status-<?= escapar($compra['status']) ?>"><?= escapar($compra['status_texto'] ?? $compra['status']) ?></span></td>
-                <td><?= escapar($compra['endereco_entrega']) ?></td>
-                <td>
-                  <?php if ($compra['status'] === 'enviada'): ?>
-                    <form method="post" action="controladores/concluir_compra.php" onsubmit="return confirm('Confirmar que você recebeu este vinho?');">
-                      <?= campo_csrf() ?>
-                      <input type="hidden" name="compra_id" value="<?= escapar($compra['id']) ?>">
-                      <button type="submit" class="table-link">Confirmar recebimento</button>
-                    </form>
-                  <?php else: ?>
-                    <span class="muted-text">-</span>
-                  <?php endif; ?>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
+      <div class="purchase-cards">
+        <?php foreach ($compras as $compra): ?>
+          <article class="purchase-card">
+            <div class="purchase-photo">
+              <?php if (!empty($compra['imagem'])): ?>
+                <img src="<?= escapar($compra['imagem']) ?>" alt="Foto de <?= escapar($compra['vinho_nome']) ?>">
+              <?php else: ?>
+                <span class="thumb-placeholder"><i class="bi bi-image"></i></span>
+              <?php endif; ?>
+            </div>
+            <div class="purchase-info">
+              <div class="request-title-row">
+                <h2><?= escapar($compra['titulo']) ?></h2>
+                <span class="status-chip status-<?= escapar($compra['status']) ?>"><?= escapar($compra['status_texto'] ?? $compra['status']) ?></span>
+              </div>
+              <p><strong>Vendedor:</strong> <?= escapar($compra['vendedor_nome']) ?></p>
+              <p><strong>Qtd.:</strong> <?= escapar((string)$compra['quantidade']) ?> | <strong>Total:</strong> R$ <?= number_format((float)$compra['total'], 2, ',', '.') ?></p>
+              <p><strong>Pagamento:</strong> <?= escapar($compra['forma_pagamento']) ?></p>
+              <p><strong>Comentário / entrega:</strong> <?= escapar($compra['endereco_entrega']) ?></p>
+              <p><strong>Nota fiscal:</strong> <?= escapar($compra['numero_nota']) ?></p>
+              <div class="seller-ad-actions">
+                <a class="pill-btn" href="nota_fiscal.php?id=<?= escapar($compra['id']) ?>"><i class="bi bi-receipt"></i> Ver nota</a>
+                <?php if ($compra['status'] === 'enviada'): ?>
+                  <form method="post" action="controladores/concluir_compra.php" onsubmit="return confirm('Confirmar que você recebeu este vinho?');">
+                    <?= campo_csrf() ?>
+                    <input type="hidden" name="compra_id" value="<?= escapar($compra['id']) ?>">
+                    <button type="submit" class="pill-btn pill-primary">Confirmar recebimento</button>
+                  </form>
+                <?php endif; ?>
+              </div>
+            </div>
+          </article>
+        <?php endforeach; ?>
       </div>
     <?php endif; ?>
   </section>

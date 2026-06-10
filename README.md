@@ -1,6 +1,6 @@
 # VinhoSend
 
-VinhoSend é um marketplace acadêmico para cadastro, compra e venda de vinhos entre usuários autenticados. O projeto foi organizado para cumprir os critérios de avaliação de segurança, criptografia, versionamento, testes, arquitetura MVC e sistema funcional.
+VinhoSend é um marketplace simples para cadastro, compra e venda de vinhos entre usuários autenticados. A ideia é permitir que uma pessoa cadastre seus vinhos, coloque anúncios no marketplace e acompanhe as compras recebidas.
 
 ## Funcionalidades principais
 
@@ -9,7 +9,9 @@ VinhoSend é um marketplace acadêmico para cadastro, compra e venda de vinhos e
 - Sessão segura com cookie HttpOnly, SameSite e configuração de segurança.
 - Cadastro, edição, listagem e exclusão de vinhos do próprio usuário.
 - Marketplace com anúncios de venda de vinhos.
-- Compra/reserva de anúncios publicados por outros usuários.
+- Encomenda de anúncios publicados por outros usuários.
+- Emissão de nota fiscal simples com valor, forma de pagamento e comentário de entrega.
+- Páginas de Links Úteis e Contato no menu.
 - Controle de estoque do anúncio após reserva.
 - Histórico de compras do comprador.
 - Área do vendedor com anúncios publicados, solicitações recebidas e botão para marcar pedido como enviado.
@@ -91,8 +93,8 @@ Não existe mais instalador PHP de banco; a instalação é feita somente pelo S
 4. Criar um anúncio em **Vender**.
 5. Sair e entrar com o segundo usuário.
 6. Abrir **Marketplace**.
-7. Reservar a compra do anúncio.
-8. Abrir **Minhas Compras**.
+7. Encomendar o vinho, escolher a forma de pagamento e preencher o comentário com endereço.
+8. Abrir **Minhas Compras** e visualizar a nota fiscal.
 9. Voltar ao vendedor e conferir **Reservas recebidas**.
 10. Voltar ao vendedor, abrir **Vender** e marcar a solicitação como enviada.
 11. No comprador, abrir **Minhas Compras** e confirmar o recebimento.
@@ -140,11 +142,14 @@ Ele executa verificação de sintaxe e os testes automatizados a cada push nas b
 - `painel.php` - cadastro e gestão dos vinhos do usuário.
 - `marketplace.php` - anúncios disponíveis para compra.
 - `meus_anuncios.php` - criação, edição, controle de anúncios e solicitações de compra recebidas.
-- `minhas_compras.php` - histórico de compras/reservas e confirmação de recebimento.
+- `minhas_compras.php` - histórico de compras/reservas, nota fiscal e confirmação de recebimento.
+- `nota_fiscal.php` - visualização e impressão da nota fiscal.
+- `links_uteis.php` - orientações básicas de uso.
+- `contato.php` - formulário de contato simples.
 
-## Observação acadêmica
+## Observação
 
-O projeto não processa pagamento real. A compra funciona como reserva registrada no banco, suficiente para demonstrar entidade de domínio, múltiplos usuários, persistência, regra de negócio, autorização e segurança.
+O projeto não processa pagamento real. A forma de pagamento fica registrada na encomenda para controle do vendedor e para aparecer na nota fiscal simples.
 
 ## Ajustes finais da versão marketplace
 

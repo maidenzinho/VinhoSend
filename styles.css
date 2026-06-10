@@ -791,3 +791,151 @@ html.dark .seller-ad-card, html.dark .seller-request-card {
     flex-direction: column;
   }
 }
+
+/* Menu único do cabeçalho */
+.brand-block { display: flex; flex-direction: column; line-height: 1.1; }
+.brand-subtitle { font-size: .82rem; color: rgba(250, 240, 230, .78); letter-spacing: .03em; }
+.nav-actions-dropdown { position: relative; flex-wrap: nowrap; }
+.menu-dropdown { position: relative; }
+.menu-button i { transition: transform .2s ease; }
+.menu-dropdown.is-open .menu-button i { transform: rotate(180deg); }
+.menu-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 230px;
+  background: color-mix(in srgb, var(--secondary) 86%, #000 14%);
+  border: 1px solid rgba(250, 240, 230, .16);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: var(--shadow);
+  display: none;
+  z-index: 50;
+}
+.menu-dropdown.is-open .menu-panel { display: block; }
+.menu-item {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--secondary-foreground);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-align: left;
+}
+.menu-item:hover, .menu-item.is-active { background: rgba(250, 240, 230, .12); }
+.menu-item i { font-size: 1.1rem; opacity: .9; }
+.menu-logout-form { margin: 8px 0 0; padding-top: 8px; border-top: 1px solid rgba(250, 240, 230, .16); }
+.menu-logout { cursor: pointer; font-family: 'Nunito', sans-serif; }
+
+/* Marketplace com links e nota */
+.marketplace-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.side-info-card,
+.useful-card,
+.invoice-card,
+.purchase-card {
+  background: color-mix(in srgb, var(--muted) 76%, transparent);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  box-shadow: var(--shadow-soft);
+}
+.side-info-card { padding: 22px; position: sticky; top: 18px; }
+.side-info-title { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.side-info-title i {
+  width: 42px; height: 42px; border-radius: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--primary); color: var(--primary-foreground); font-size: 1.25rem;
+}
+.side-info-title h2 { margin: 0; }
+.side-link {
+  margin-top: 10px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 34px 1fr 18px;
+  gap: 10px;
+  align-items: center;
+  background: rgba(255,255,255,.12);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  font-weight: 700;
+}
+.side-link:hover { transform: translateY(-1px); }
+.side-contact-title { margin-top: 24px; }
+.side-contact-button { width: 100%; margin-top: 8px; }
+.marketplace-main-card { min-width: 0; }
+.section-title-row { display: flex; justify-content: space-between; gap: 16px; align-items: center; margin-bottom: 18px; }
+.section-title-row h2 { margin: 0 0 4px; }
+.market-grid-wide { grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); }
+.enhanced-market-card { overflow: hidden; }
+.readonly-money {
+  min-height: 48px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 13px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-weight: 800;
+  background: rgba(255,255,255,.1);
+}
+.order-form select { width: 100%; }
+
+/* Links úteis e contato */
+.useful-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.useful-card { padding: 26px; }
+.useful-card i {
+  width: 48px; height: 48px; border-radius: 15px;
+  background: var(--primary); color: var(--primary-foreground);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.35rem; margin-bottom: 14px;
+}
+.useful-card h2 { margin: 0 0 10px; }
+.useful-card p { margin: 0; line-height: 1.65; color: var(--muted-foreground); }
+.contact-layout { display: grid; grid-template-columns: 1.3fr .7fr; gap: 24px; align-items: start; }
+.contact-info p { line-height: 1.7; }
+
+/* Compras e nota fiscal */
+.purchase-cards { display: grid; gap: 18px; }
+.purchase-card { display: grid; grid-template-columns: 190px 1fr; overflow: hidden; }
+.purchase-photo { min-height: 210px; background: rgba(0,0,0,.08); display: flex; align-items: center; justify-content: center; }
+.purchase-photo img { width: 100%; height: 100%; object-fit: cover; }
+.purchase-info { padding: 22px; }
+.invoice-page { display: flex; justify-content: center; }
+.invoice-card { width: min(880px, 100%); padding: 34px; background: var(--background); }
+.invoice-top { display: flex; justify-content: space-between; gap: 20px; align-items: start; margin-bottom: 28px; }
+.invoice-top h2 { margin: 0 0 8px; font-size: 2rem; }
+.invoice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.invoice-grid-wide { grid-template-columns: repeat(4, 1fr); }
+.invoice-grid span, .invoice-address span { display: block; color: var(--muted-foreground); font-size: .9rem; margin-bottom: 4px; }
+.invoice-grid strong { display: block; font-size: 1.05rem; }
+.invoice-grid small { display: block; color: var(--muted-foreground); margin-top: 4px; }
+.invoice-line { height: 1px; background: var(--border); margin: 24px 0; }
+.invoice-address { margin-top: 22px; padding: 18px; border: 1px dashed var(--border); border-radius: 16px; }
+.invoice-address p { margin: 6px 0 0; line-height: 1.7; }
+.status-concluida, .status-enviada, .status-reservada { text-transform: none; }
+
+@media (max-width: 980px) {
+  .marketplace-layout, .useful-grid, .contact-layout { grid-template-columns: 1fr; }
+  .side-info-card { position: static; }
+  .purchase-card { grid-template-columns: 1fr; }
+  .purchase-photo { min-height: 220px; }
+  .invoice-grid, .invoice-grid-wide { grid-template-columns: 1fr; }
+}
+
+@media print {
+  .navbar, .footer-main, .no-print { display: none !important; }
+  .site-shell, body { background: #fff !important; color: #111 !important; }
+  .invoice-card { box-shadow: none; border: 1px solid #ddd; }
+}
