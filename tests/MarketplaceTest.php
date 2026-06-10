@@ -16,7 +16,9 @@ assert_equals(10, $anuncio->vinhoId, 'Anúncio deve estar vinculado a um vinho.'
 assert_equals(2, $anuncio->vendedorId, 'Anúncio deve guardar o vendedor dono.');
 assert_equals(3, $anuncio->quantidade, 'Anúncio deve controlar estoque.');
 
-$compra = new Compra(null, 5, 8, 2, 2, 120.00, 240.00, 'Retirada combinada com o vendedor.');
+$compra = new Compra(null, 5, 8, 2, 2, 120.00, 240.00, 'Retirada combinada com o vendedor.', 'Pix');
 assert_equals(8, $compra->compradorId, 'Compra deve registrar comprador.');
 assert_equals(2, $compra->vendedorId, 'Compra deve registrar vendedor.');
 assert_equals(240.00, $compra->total, 'Compra deve registrar total calculado.');
+
+assert_equals('Pix', $compra->formaPagamento, 'Compra deve guardar a forma de pagamento.');

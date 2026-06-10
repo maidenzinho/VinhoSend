@@ -20,6 +20,10 @@ $schemaNormalizado = strtolower(preg_replace('/\s+/', ' ', $schema));
 
 assert_true(str_contains($schemaNormalizado, 'imagem varchar(255)'), 'Tabela vinhos deve ter coluna de imagem.');
 assert_true(str_contains($schemaNormalizado, 'create table if not exists compras'), 'Tabela compras deve existir no SQL.');
+
+assert_true(str_contains($schemaNormalizado, 'forma_pagamento varchar(40)'), 'Tabela compras deve guardar forma de pagamento.');
+assert_true(str_contains($schemaNormalizado, 'numero_nota varchar(40)'), 'Tabela compras deve guardar número da nota fiscal.');
+assert_true(str_contains($schemaNormalizado, 'nota_emitida_em datetime'), 'Tabela compras deve guardar emissão da nota fiscal.');
 assert_true(str_contains($schemaNormalizado, 'reservada'), 'Tabela compras deve ter status reservada.');
 assert_true(str_contains($schemaNormalizado, 'enviada'), 'Tabela compras deve ter status enviada.');
 assert_true(str_contains($schemaNormalizado, 'concluida'), 'Tabela compras deve ter status concluida.');

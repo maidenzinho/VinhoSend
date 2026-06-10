@@ -12,6 +12,7 @@ final class Compra
         public float $precoUnitario,
         public float $total,
         public string $enderecoEntrega,
+        public string $formaPagamento = 'Pix',
         public string $status = 'reservada'
     ) {}
 }

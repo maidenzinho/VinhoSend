@@ -140,7 +140,9 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
                 </div>
                 <p><strong>Comprador:</strong> <?= escapar($venda['comprador_nome']) ?> - <?= escapar($venda['comprador_email'] ?? '') ?></p>
                 <p><strong>Vinho:</strong> <?= escapar($venda['vinho_nome']) ?> | <strong>Qtd.:</strong> <?= escapar((string)$venda['quantidade']) ?> | <strong>Total:</strong> R$ <?= number_format((float)$venda['total'], 2, ',', '.') ?></p>
-                <p><strong>Entrega combinada:</strong> <?= escapar($venda['endereco_entrega']) ?></p>
+                <p><strong>Forma de pagamento:</strong> <?= escapar($venda['forma_pagamento']) ?> | <strong>Nota fiscal:</strong> <?= escapar($venda['numero_nota']) ?></p>
+                <p><strong>Comentário / entrega:</strong> <?= escapar($venda['endereco_entrega']) ?></p>
+                <p><a class="text-link" href="nota_fiscal.php?id=<?= escapar($venda['id']) ?>">Ver nota fiscal</a></p>
                 <?php if ($venda['status'] === 'reservada'): ?>
                   <form method="post" action="controladores/enviar_compra.php" onsubmit="return confirm('Marcar esta solicitação como enviada?');">
                     <?= campo_csrf() ?>
