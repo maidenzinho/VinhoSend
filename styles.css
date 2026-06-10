@@ -543,3 +543,66 @@ textarea {
     grid-template-columns: 1fr;
   }
 }
+
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+.market-card {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.38);
+  box-shadow: var(--shadow-soft);
+}
+html.dark .market-card {
+  background: rgba(255, 255, 255, 0.05);
+}
+.market-card h2 {
+  margin: 12px 0 6px;
+  font-size: 1.25rem;
+}
+.market-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+.market-card-top strong {
+  color: var(--primary);
+  white-space: nowrap;
+}
+.tag-vinho, .status-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  font-size: .82rem;
+  font-weight: 800;
+}
+.market-meta, .market-seller {
+  color: var(--muted-foreground);
+  font-weight: 700;
+}
+.buy-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+.status-ativo { color: #1b7b3a; }
+.status-pausado { color: #a06400; }
+.status-vendido, .status-cancelada { color: #a02633; }
+.status-reservada { color: var(--primary); }
+.status-concluida { color: #1b7b3a; }
+@media (max-width: 720px) {
+  .nav-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  .market-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

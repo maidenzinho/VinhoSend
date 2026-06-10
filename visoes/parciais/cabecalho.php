@@ -10,7 +10,7 @@ $paginaAtual = $paginaAtual ?? '';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= escapar($tituloPagina) ?></title>
-  <meta name="description" content="VinhoSend — Controle estoque, pedidos, fornecedores e financeiro em uma única plataforma.">
+  <meta name="description" content="VinhoSend — Marketplace seguro para cadastro, compra e venda de vinhos entre usuários.">
   <meta name="author" content="VinhoSend">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,9 @@ $paginaAtual = $paginaAtual ?? '';
       <div class="nav-actions">
         <?php if (usuario_logado()): ?>
           <a href="painel.php" class="pill-btn pill-secondary <?= $paginaAtual === 'painel' ? 'is-active' : '' ?>">Meus Vinhos</a>
+          <a href="marketplace.php" class="pill-btn pill-secondary <?= $paginaAtual === 'marketplace' ? 'is-active' : '' ?>">Marketplace</a>
+          <a href="meus_anuncios.php" class="pill-btn pill-secondary <?= $paginaAtual === 'meus_anuncios' ? 'is-active' : '' ?>">Vender</a>
+          <a href="minhas_compras.php" class="pill-btn pill-secondary <?= $paginaAtual === 'minhas_compras' ? 'is-active' : '' ?>">Compras</a>
           <a href="controladores/sair.php" class="pill-btn pill-secondary">Sair</a>
         <?php else: ?>
           <a href="login.php" class="pill-btn pill-secondary <?= $paginaAtual === 'login' ? 'is-active' : '' ?>">Entrar</a>

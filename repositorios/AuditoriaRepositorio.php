@@ -9,6 +9,6 @@ final class AuditoriaRepositorio
     {
         $ip = $_SERVER['REMOTE_ADDR'] ?? 'desconhecido';
         $stmt = Conexao::obter()->prepare('INSERT INTO auditoria (usuario_id, acao, detalhes, ip) VALUES (?, ?, ?, ?)');
-        $stmt->execute([$usuarioId, $acao, mb_substr($detalhes, 0, 255), $ip]);
+        $stmt->execute([$usuarioId, $acao, (function_exists('mb_substr') ? mb_substr($detalhes, 0, 255) : substr($detalhes, 0, 255)), $ip]);
     }
 }

@@ -3,12 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-  <title>VinhoSend | Gerenciar Adegas</title>
-=======
-  <title>VinhoSend | Gerenciar Distribuidoras</title>
->>>>>>> ec3236e (alteracao no extra2 - rebase)
-  <meta name="description" content="VinhoSend — Controle estoque, pedidos, fornecedores e financeiro em uma única plataforma.">
+  <title>VinhoSend | Marketplace de Vinhos</title>
+  <meta name="description" content="VinhoSend — Marketplace seguro para cadastro, compra e venda de vinhos entre usuários.">
   <meta name="author" content="VinhoSend">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,11 +34,12 @@
       <section class="hero-section">
         <div class="container hero-grid">
           <div class="hero-copy fade-in-up">
-            <h1>Gestão para<br>Adegas e Distribuidoras</h1>
-            <p>Centralize estoque, pedidos, fornecedores, financeiro e operações em uma única plataforma ERP.</p>
+            <p class="eyebrow">Compra, venda e curadoria</p>
+            <h1>Marketplace seguro para amantes de vinhos</h1>
+            <p>Cadastre seus rótulos, publique anúncios, compre de outros usuários e acompanhe reservas em uma plataforma simples, organizada e protegida.</p>
             <div class="hero-actions">
-              <a href="registro.php" class="pill-btn pill-primary">Comece Agora</a>
-              <a href="#features" class="pill-btn pill-primary">Saiba Mais</a>
+              <a href="registro.php" class="pill-btn pill-primary">Criar conta</a>
+              <a href="login.php" class="pill-btn pill-primary">Acessar marketplace</a>
             </div>
           </div>
           <div class="hero-image-wrap fade-in-up delay-1">
@@ -53,22 +50,22 @@
 
       <section id="features" class="features-section">
         <div class="container">
-          <h2>Por que escolher VinhoSend</h2>
+          <h2>O que o VinhoSend faz</h2>
           <div class="features-grid">
             <article class="feature-card fade-in-up">
-              <div class="feature-icon" aria-hidden="true"><i class="bi bi-box-seam-fill"></i></div>
-              <h3>Controle de Estoque</h3>
-              <p>Gerencie entradas, saídas, lotes, validade e níveis mínimos de estoque em tempo real com total rastreabilidade.</p>
+              <div class="feature-icon" aria-hidden="true"><i class="bi bi-journal-bookmark-fill"></i></div>
+              <h3>Minha adega</h3>
+              <p>O usuário cadastra vinhos com tipo, país, safra, nota e descrição protegida por criptografia.</p>
             </article>
             <article class="feature-card fade-in-up delay-1">
-              <div class="feature-icon" aria-hidden="true"><i class="bi bi-cart-check-fill"></i></div>
-              <h3>Gestão de Pedidos</h3>
-              <p>Centralize vendas, pedidos e distribuição em um único painel administrativo para maior organização operacional.</p>
+              <div class="feature-icon" aria-hidden="true"><i class="bi bi-shop-window"></i></div>
+              <h3>Anúncios de venda</h3>
+              <p>Transforme vinhos cadastrados em anúncios com preço, estoque, status e observações para compradores.</p>
             </article>
             <article class="feature-card fade-in-up delay-2">
-              <div class="feature-icon" aria-hidden="true"><i class="bi bi-bar-chart-fill"></i></div>
-              <h3>Relatórios Inteligentes</h3>
-              <p>Acompanhe métricas financeiras, movimentações e desempenho operacional através de dashboards e indicadores em tempo real.</p>
+              <div class="feature-icon" aria-hidden="true"><i class="bi bi-bag-check-fill"></i></div>
+              <h3>Reservas de compra</h3>
+              <p>Outros usuários podem reservar a compra, com validação de estoque, auditoria e proteção dos dados de entrega.</p>
             </article>
           </div>
         </div>
@@ -79,21 +76,22 @@
       <div class="container footer-grid">
         <div>
           <h3>VinhoSend</h3>
-          <p>ERP especializado na gestão de adegas, distribuidoras e operações de vinhos.</p>
+          <p>Projeto acadêmico com autenticação, marketplace, persistência, criptografia, testes e GitHub Actions.</p>
         </div>
         <div>
-          <h3>Links Úteis</h3>
+          <h3>Fluxo</h3>
           <ul>
-            <li><a href="index.html">Sobre a Plataforma</a></li>
-            <li><a href="index.html">Termos de Uso</a></li>
-            <li><a href="index.html">Política de Privacidade</a></li>
+            <li><a href="registro.php">Criar conta</a></li>
+            <li><a href="login.php">Entrar</a></li>
+            <li><a href="login.php">Comprar ou vender</a></li>
           </ul>
         </div>
         <div>
-          <h3>Contato</h3>
+          <h3>Segurança</h3>
           <ul>
-            <li><a href="index.html">Suporte</a></li>
-            <li><a href="index.html">Central de Atendimento</a></li>
+            <li><a href="login.php">Sessão protegida</a></li>
+            <li><a href="login.php">CSRF nos formulários</a></li>
+            <li><a href="login.php">Criptografia AES-256-GCM</a></li>
           </ul>
         </div>
       </div>
