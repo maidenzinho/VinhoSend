@@ -1,5 +1,8 @@
 name: Testes PHP
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     branches: [ main, develop, homologacao ]
@@ -21,6 +24,9 @@ jobs:
         with:
           php-version: '8.2'
           extensions: mbstring, openssl, pdo, pdo_mysql
+
+      - name: Conferir SQL único
+        run: test -f database/vinhosend_unico.sql
 
       - name: Verificar sintaxe dos arquivos PHP
         run: find . -name "*.php" -not -path "./vendor/*" -print0 | xargs -0 -n1 php -l
