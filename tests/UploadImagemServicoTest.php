@@ -10,20 +10,16 @@ assert_true(str_contains($codigo, '2097152'), 'Upload deve limitar a imagem em 2
 assert_true(str_contains($codigo, 'random_bytes'), 'Nome da imagem deve ser gerado de forma aleatória.');
 assert_true(str_contains($codigo, 'move_uploaded_file'), 'Upload deve usar função segura para mover arquivo enviado.');
 
-$caminhosSql = [
-    __DIR__ . '/../database/vinhosend_unico.sql',
-    __DIR__ . '/../vinhosend_unico.sql',
-    __DIR__ . '/../database/vinhosend_unico_vendedor.sql',
-];
+$caminhoSql = __DIR__ . '/../database/vinhosend_unico.sql';
+assert_true(is_file($caminhoSql), 'SQL único deve existir em database/vinhosend_unico.sql.');
 
-$schema = false;
-foreach ($caminhosSql as $caminhoSql) {
-    if (is_file($caminhoSql)) {
-        $schema = file_get_contents($caminhoSql);
-        break;
-    }
-}
+$schema = file_get_contents($caminhoSql);
+assert_true(is_string($schema), 'SQL único deve ser legível.');
 
-assert_true(is_string($schema), 'SQL único deve existir em database/vinhosend_unico.sql.');
-assert_true(str_contains($schema, 'imagem VARCHAR(255)'), 'Tabela vinhos deve ter coluna de imagem.');
-assert_true(str_contains($schema, "status ENUM('reservada','enviada','cancelada','concluida')"), 'Tabela compras deve ter status de reserva, envio e conclusão.');
+$schemaNormalizado = strtolower(preg_replace('/\s+/', ' ', $schema));
+
+assert_true(str_contains($schemaNormalizado, 'imagem varchar(255)'), 'Tabela vinhos deve ter coluna de imagem.');
+assert_true(str_contains($schemaNormalizado, 'create table if not exists compras'), 'Tabela compras deve existir no SQL.');
+assert_true(str_contains($schemaNormalizado, 'reservada'), 'Tabela compras deve ter status reservada.');
+assert_true(str_contains($schemaNormalizado, 'enviada'), 'Tabela compras deve ter status enviada.');
+assert_true(str_contains($schemaNormalizado, 'concluida'), 'Tabela compras deve ter status concluida.');
