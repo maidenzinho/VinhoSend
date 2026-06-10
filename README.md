@@ -208,7 +208,6 @@ Ele executa:
 [ ] docs/relatorio-requisitos-seguranca.pdf está no projeto
 [ ] README.md está na raiz
 [ ] database/vinhosend_unico.sql importa no phpMyAdmin
-[ ] Não existe instalar_banco.php
 [ ] php tests/run.php passa localmente
 [ ] GitHub Actions está verde
 [ ] Cadastro e login funcionam
