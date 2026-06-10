@@ -12,7 +12,7 @@ VinhoSend é um marketplace acadêmico para cadastro, compra e venda de vinhos e
 - Compra/reserva de anúncios publicados por outros usuários.
 - Controle de estoque do anúncio após reserva.
 - Histórico de compras do comprador.
-- Área do vendedor com anúncios publicados e reservas recebidas.
+- Área do vendedor com anúncios publicados, solicitações recebidas e botão para marcar pedido como enviado.
 - Auditoria de ações relevantes.
 - Criptografia AES-256-GCM para dados sensíveis textuais.
 - Testes automatizados e workflow do GitHub Actions.
@@ -94,7 +94,9 @@ Não existe mais instalador PHP de banco; a instalação é feita somente pelo S
 7. Reservar a compra do anúncio.
 8. Abrir **Minhas Compras**.
 9. Voltar ao vendedor e conferir **Reservas recebidas**.
-10. Mostrar no código os controles de segurança, criptografia, testes e Actions.
+10. Voltar ao vendedor, abrir **Vender** e marcar a solicitação como enviada.
+11. No comprador, abrir **Minhas Compras** e confirmar o recebimento.
+12. Mostrar no código os controles de segurança, criptografia, testes e Actions.
 
 ## Testes locais
 
@@ -105,7 +107,7 @@ php tests/run.php
 Resultado esperado:
 
 ```text
-Testes executados com sucesso: 5
+Testes executados com sucesso: 7
 ```
 
 Verificação de sintaxe:
@@ -137,8 +139,8 @@ Ele executa verificação de sintaxe e os testes automatizados a cada push nas b
 - `login.php` - autenticação.
 - `painel.php` - cadastro e gestão dos vinhos do usuário.
 - `marketplace.php` - anúncios disponíveis para compra.
-- `meus_anuncios.php` - criação, edição e controle de anúncios.
-- `minhas_compras.php` - histórico de compras/reservas.
+- `meus_anuncios.php` - criação, edição, controle de anúncios e solicitações de compra recebidas.
+- `minhas_compras.php` - histórico de compras/reservas e confirmação de recebimento.
 
 ## Observação acadêmica
 

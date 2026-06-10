@@ -41,6 +41,7 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
               <th>Total</th>
               <th>Status</th>
               <th>Entrega</th>
+              <th>Ação</th>
             </tr>
           </thead>
           <tbody>
@@ -58,8 +59,19 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
                 <td><?= escapar((string)$compra['quantidade']) ?></td>
                 <td>R$ <?= number_format((float)$compra['preco_unitario'], 2, ',', '.') ?></td>
                 <td>R$ <?= number_format((float)$compra['total'], 2, ',', '.') ?></td>
-                <td><span class="status-chip status-<?= escapar($compra['status']) ?>"><?= escapar($compra['status']) ?></span></td>
+                <td><span class="status-chip status-<?= escapar($compra['status']) ?>"><?= escapar($compra['status_texto'] ?? $compra['status']) ?></span></td>
                 <td><?= escapar($compra['endereco_entrega']) ?></td>
+                <td>
+                  <?php if ($compra['status'] === 'enviada'): ?>
+                    <form method="post" action="controladores/concluir_compra.php" onsubmit="return confirm('Confirmar que você recebeu este vinho?');">
+                      <?= campo_csrf() ?>
+                      <input type="hidden" name="compra_id" value="<?= escapar($compra['id']) ?>">
+                      <button type="submit" class="table-link">Confirmar recebimento</button>
+                    </form>
+                  <?php else: ?>
+                    <span class="muted-text">-</span>
+                  <?php endif; ?>
+                </td>
               </tr>
             <?php endforeach; ?>
           </tbody>

@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS vinhosend_ra2;
 CREATE DATABASE IF NOT EXISTS vinhosend_ra2 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE vinhosend_ra2;
 
@@ -65,7 +66,7 @@ CREATE TABLE IF NOT EXISTS compras (
   preco_unitario DECIMAL(10,2) NOT NULL,
   total DECIMAL(10,2) NOT NULL,
   endereco_entrega TEXT NOT NULL,
-  status ENUM('reservada','cancelada','concluida') NOT NULL DEFAULT 'reservada',
+  status ENUM('reservada','enviada','cancelada','concluida') NOT NULL DEFAULT 'reservada',
   criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   INDEX idx_compras_comprador (comprador_id),
   INDEX idx_compras_vendedor (vendedor_id),
