@@ -97,10 +97,17 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
       <?php else: ?>
         <div class="table-wrap">
           <table class="tabela-vinhos">
-            <thead><tr><th>Título</th><th>Vinho</th><th>Preço</th><th>Qtd.</th><th>Status</th><th>Ações</th></tr></thead>
+            <thead><tr><th>Foto</th><th>Título</th><th>Vinho</th><th>Preço</th><th>Qtd.</th><th>Status</th><th>Ações</th></tr></thead>
             <tbody>
               <?php foreach ($anuncios as $anuncio): ?>
                 <tr>
+                  <td>
+                    <?php if (!empty($anuncio['imagem'])): ?>
+                      <img src="<?= escapar($anuncio['imagem']) ?>" alt="Foto de <?= escapar($anuncio['vinho_nome']) ?>" class="thumb-vinho">
+                    <?php else: ?>
+                      <span class="thumb-placeholder"><i class="bi bi-image"></i></span>
+                    <?php endif; ?>
+                  </td>
                   <td><?= escapar($anuncio['titulo']) ?></td>
                   <td><?= escapar($anuncio['vinho_nome']) ?></td>
                   <td>R$ <?= number_format((float)$anuncio['preco'], 2, ',', '.') ?></td>
@@ -132,10 +139,17 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
     <?php else: ?>
       <div class="table-wrap">
         <table class="tabela-vinhos">
-          <thead><tr><th>Comprador</th><th>Anúncio</th><th>Qtd.</th><th>Total</th><th>Status</th><th>Entrega</th></tr></thead>
+          <thead><tr><th>Foto</th><th>Comprador</th><th>Anúncio</th><th>Qtd.</th><th>Total</th><th>Status</th><th>Entrega</th></tr></thead>
           <tbody>
             <?php foreach ($vendas as $venda): ?>
               <tr>
+                <td>
+                  <?php if (!empty($venda['imagem'])): ?>
+                    <img src="<?= escapar($venda['imagem']) ?>" alt="Foto de <?= escapar($venda['vinho_nome']) ?>" class="thumb-vinho">
+                  <?php else: ?>
+                    <span class="thumb-placeholder"><i class="bi bi-image"></i></span>
+                  <?php endif; ?>
+                </td>
                 <td><?= escapar($venda['comprador_nome']) ?></td>
                 <td><?= escapar($venda['titulo']) ?></td>
                 <td><?= escapar((string)$venda['quantidade']) ?></td>

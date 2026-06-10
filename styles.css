@@ -606,3 +606,71 @@ html.dark .market-card {
     flex-direction: column;
   }
 }
+
+.logout-form {
+  display: inline-flex;
+  margin: 0;
+}
+
+.logout-form button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Fotos dos vinhos */
+.field-help {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--muted-text);
+}
+
+.vinho-preview {
+  display: block;
+  width: 140px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-top: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.thumb-vinho,
+.thumb-placeholder {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted-text);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.market-image-wrap {
+  margin-bottom: 16px;
+}
+
+.market-image {
+  width: 100%;
+  height: 190px;
+  border-radius: 20px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.market-image.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--muted-text);
+}
+
+.market-image.placeholder i {
+  font-size: 2rem;
+}

@@ -5,20 +5,20 @@ require_once __DIR__ . '/../config/seguranca.php';
 require_once __DIR__ . '/../repositorios/VinhoRepositorio.php';
 require_once __DIR__ . '/../repositorios/AuditoriaRepositorio.php';
 require_once __DIR__ . '/../servicos/Validador.php';
+require_once __DIR__ . '/../servicos/UploadImagemServico.php';
 
 exigir_login();
 validar_csrf();
 
 try {
-    $id = Validador::inteiro($_POST['id'] ?? '', 1, 999999, 'ID');
     $usuarioId = usuario_atual_id();
+    $id = Validador::inteiro($_POST['id'] ?? '', 1, 999999, 'ID');
+
     $repo = new VinhoRepositorio();
-    $vinho = $repo->buscarDoUsuario($id, $usuarioId);
-    if (!$vinho) {
-        throw new InvalidArgumentException('Vinho não encontrado para este usuário.');
-    }
-    $repo->excluir($id, $usuarioId);
-    (new AuditoriaRepositorio())->registrar($usuarioId, 'EXCLUIR_VINHO', 'Vinho excluído: ' . $vinho['nome']);
+    $imagem = $repo->excluir($id, $usuarioId);
+    UploadImagemServico::removerImagem($imagem);
+
+    (new AuditoriaRepositorio())->registrar($usuarioId, 'EXCLUIR_VINHO', 'Vinho removido da adega.');
     redirecionar_com_mensagem('../painel.php', 'sucesso', 'Vinho excluído com sucesso.');
 } catch (Throwable $e) {
     redirecionar_com_mensagem('../painel.php', 'erro', $e->getMessage());

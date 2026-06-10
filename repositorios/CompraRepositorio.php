@@ -59,7 +59,7 @@ final class CompraRepositorio
 
     public function listarPorComprador(int $compradorId): array
     {
-        $sql = 'SELECT c.*, a.titulo, v.nome AS vinho_nome, u.nome AS vendedor_nome
+        $sql = 'SELECT c.*, a.titulo, v.nome AS vinho_nome, v.imagem, u.nome AS vendedor_nome
                 FROM compras c
                 INNER JOIN anuncios_vinhos a ON a.id = c.anuncio_id
                 INNER JOIN vinhos v ON v.id = a.vinho_id
@@ -73,7 +73,7 @@ final class CompraRepositorio
 
     public function listarVendasPorVendedor(int $vendedorId): array
     {
-        $sql = 'SELECT c.*, a.titulo, v.nome AS vinho_nome, u.nome AS comprador_nome
+        $sql = 'SELECT c.*, a.titulo, v.nome AS vinho_nome, v.imagem, u.nome AS comprador_nome
                 FROM compras c
                 INNER JOIN anuncios_vinhos a ON a.id = c.anuncio_id
                 INNER JOIN vinhos v ON v.id = a.vinho_id

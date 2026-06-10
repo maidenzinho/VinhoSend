@@ -32,6 +32,13 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
       <div class="market-grid">
         <?php foreach ($anuncios as $anuncio): ?>
           <article class="market-card">
+            <div class="market-image-wrap">
+              <?php if (!empty($anuncio['imagem'])): ?>
+                <img src="<?= escapar($anuncio['imagem']) ?>" alt="Foto de <?= escapar($anuncio['vinho_nome']) ?>" class="market-image">
+              <?php else: ?>
+                <div class="market-image placeholder"><i class="bi bi-image"></i><span>Sem foto</span></div>
+              <?php endif; ?>
+            </div>
             <div class="market-card-top">
               <span class="tag-vinho"><?= escapar($anuncio['tipo']) ?> · <?= escapar($anuncio['safra']) ?></span>
               <strong>R$ <?= number_format((float)$anuncio['preco'], 2, ',', '.') ?></strong>
