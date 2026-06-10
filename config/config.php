@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 const APP_NOME = 'VinhoSend';
-const APP_URL = 'http://localhost/VinhoSend';
+const APP_URL = 'http://localhost';
 const DB_HOST = '127.0.0.1';
 const DB_PORTA = '3306';
 const DB_NOME = 'vinhosend_ra2';
