@@ -12,3 +12,4 @@ const SESSAO_NOME = 'VINHOSEND_SESSAO';
 const CSRF_NOME = 'vinhosend_csrf';
 const MAX_TENTATIVAS_LOGIN = 5;
 const MINUTOS_BLOQUEIO_LOGIN = 15;
+const CRYPTO_CHAVE = 'vinhosend-chave-local-de-desenvolvimento-trocar-em-producao';
