@@ -25,7 +25,8 @@ final class VinhoRepositorio
 
     public function criar(Vinho $vinho): void
     {
-        $sql = 'INSERT INTO vinhos (usuario_id, nome, tipo, pais, safra, nota, descricao) VALUES (?, ?, ?, ?, ?, ?, ?)';
+        // Requisito: dado sensível protegido. A descrição é cifrada antes de ir para o banco.
+        $sql = 'INSERT INTO vinhos (usuario_id, nome, tipo, pais, safra, nota, descricao, imagem) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
         $stmt = Conexao::obter()->prepare($sql);
         $stmt->execute([
             $vinho->usuarioId,
@@ -34,13 +35,14 @@ final class VinhoRepositorio
             $vinho->pais,
             $vinho->safra,
             $vinho->nota,
-            CriptografiaServico::cifrar($vinho->descricao)
+            CriptografiaServico::cifrar($vinho->descricao),
+            $vinho->imagem
         ]);
     }
 
     public function atualizar(Vinho $vinho): void
     {
-        $sql = 'UPDATE vinhos SET nome = ?, tipo = ?, pais = ?, safra = ?, nota = ?, descricao = ?, atualizado_em = NOW() WHERE id = ? AND usuario_id = ?';
+        $sql = 'UPDATE vinhos SET nome = ?, tipo = ?, pais = ?, safra = ?, nota = ?, descricao = ?, imagem = ?, atualizado_em = NOW() WHERE id = ? AND usuario_id = ?';
         $stmt = Conexao::obter()->prepare($sql);
         $stmt->execute([
             $vinho->nome,
@@ -49,17 +51,23 @@ final class VinhoRepositorio
             $vinho->safra,
             $vinho->nota,
             CriptografiaServico::cifrar($vinho->descricao),
+            $vinho->imagem,
             $vinho->id,
             $vinho->usuarioId
         ]);
     }
 
-    public function excluir(int $id, int $usuarioId): void
+    public function excluir(int $id, int $usuarioId): ?string
     {
+        $vinho = $this->buscarDoUsuario($id, $usuarioId);
+        if (!$vinho) {
+            return null;
+        }
+
         $stmt = Conexao::obter()->prepare('DELETE FROM vinhos WHERE id = ? AND usuario_id = ?');
         $stmt->execute([$id, $usuarioId]);
+        return $vinho['imagem'] ?? null;
     }
-
 
     private function decifrarDescricao(array $linha): array
     {

@@ -9,7 +9,7 @@ final class AnuncioRepositorio
 {
     public function listarMarketplace(int $usuarioId): array
     {
-        $sql = 'SELECT a.*, v.nome AS vinho_nome, v.tipo, v.pais, v.safra, u.nome AS vendedor_nome
+        $sql = 'SELECT a.*, v.nome AS vinho_nome, v.tipo, v.pais, v.safra, v.imagem, u.nome AS vendedor_nome
                 FROM anuncios_vinhos a
                 INNER JOIN vinhos v ON v.id = a.vinho_id
                 INNER JOIN usuarios u ON u.id = a.vendedor_id
@@ -22,7 +22,7 @@ final class AnuncioRepositorio
 
     public function listarPorVendedor(int $vendedorId): array
     {
-        $sql = 'SELECT a.*, v.nome AS vinho_nome, v.tipo, v.pais, v.safra
+        $sql = 'SELECT a.*, v.nome AS vinho_nome, v.tipo, v.pais, v.safra, v.imagem
                 FROM anuncios_vinhos a
                 INNER JOIN vinhos v ON v.id = a.vinho_id
                 WHERE a.vendedor_id = ?
@@ -34,7 +34,7 @@ final class AnuncioRepositorio
 
     public function buscarDoVendedor(int $id, int $vendedorId): ?array
     {
-        $sql = 'SELECT a.*, v.nome AS vinho_nome, v.tipo, v.pais, v.safra
+        $sql = 'SELECT a.*, v.nome AS vinho_nome, v.tipo, v.pais, v.safra, v.imagem
                 FROM anuncios_vinhos a
                 INNER JOIN vinhos v ON v.id = a.vinho_id
                 WHERE a.id = ? AND a.vendedor_id = ? LIMIT 1';
@@ -86,7 +86,7 @@ final class AnuncioRepositorio
 
     public function buscarDisponivelParaCompra(int $id, int $compradorId): ?array
     {
-        $sql = 'SELECT a.*, v.nome AS vinho_nome, v.tipo, v.pais, v.safra, u.nome AS vendedor_nome
+        $sql = 'SELECT a.*, v.nome AS vinho_nome, v.tipo, v.pais, v.safra, v.imagem, u.nome AS vendedor_nome
                 FROM anuncios_vinhos a
                 INNER JOIN vinhos v ON v.id = a.vinho_id
                 INNER JOIN usuarios u ON u.id = a.vendedor_id

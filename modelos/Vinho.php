@@ -11,6 +11,7 @@ final class Vinho
         public string $pais,
         public int $safra,
         public float $nota,
-        public string $descricao
+        public string $descricao,
+        public ?string $imagem = null
     ) {}
 }

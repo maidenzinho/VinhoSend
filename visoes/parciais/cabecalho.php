@@ -31,7 +31,10 @@ $paginaAtual = $paginaAtual ?? '';
           <a href="marketplace.php" class="pill-btn pill-secondary <?= $paginaAtual === 'marketplace' ? 'is-active' : '' ?>">Marketplace</a>
           <a href="meus_anuncios.php" class="pill-btn pill-secondary <?= $paginaAtual === 'meus_anuncios' ? 'is-active' : '' ?>">Vender</a>
           <a href="minhas_compras.php" class="pill-btn pill-secondary <?= $paginaAtual === 'minhas_compras' ? 'is-active' : '' ?>">Compras</a>
-          <a href="controladores/sair.php" class="pill-btn pill-secondary">Sair</a>
+          <form method="post" action="controladores/sair.php" class="logout-form">
+            <?= campo_csrf() ?>
+            <button type="submit" class="pill-btn pill-secondary">Sair</button>
+          </form>
         <?php else: ?>
           <a href="login.php" class="pill-btn pill-secondary <?= $paginaAtual === 'login' ? 'is-active' : '' ?>">Entrar</a>
           <a href="registro.php" class="pill-btn pill-secondary <?= $paginaAtual === 'registro' ? 'is-active' : '' ?>">Criar Conta</a>

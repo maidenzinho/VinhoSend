@@ -24,7 +24,10 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
       <h1>Meus Vinhos</h1>
       <p>Olá, <?= escapar(usuario_atual_nome()) ?>. Cadastre, liste, edite e exclua seus rótulos favoritos.</p>
     </div>
-    <a href="controladores/sair.php" class="pill-btn pill-primary">Sair da Conta</a>
+    <form method="post" action="controladores/sair.php" class="logout-form">
+      <?= campo_csrf() ?>
+      <button type="submit" class="pill-btn pill-primary">Sair da Conta</button>
+    </form>
   </section>
 
   <section class="container painel-grid">
@@ -34,7 +37,7 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
         <div class="alerta alerta-<?= escapar($flash['tipo']) ?>"><?= escapar($flash['mensagem']) ?></div>
       <?php endif; ?>
 
-      <form method="post" action="controladores/salvar_vinho.php" class="auth-form">
+      <form method="post" action="controladores/salvar_vinho.php" class="auth-form" enctype="multipart/form-data">
         <?= campo_csrf() ?>
         <input type="hidden" name="id" value="<?= escapar($vinhoEdicao['id'] ?? '') ?>">
         <div class="form-group">
@@ -73,6 +76,14 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
           <label for="descricao">Descrição</label>
           <textarea id="descricao" name="descricao" rows="4" maxlength="1000"><?= escapar($vinhoEdicao['descricao'] ?? '') ?></textarea>
         </div>
+        <div class="form-group">
+          <label for="imagem">Foto do vinho</label>
+          <input id="imagem" name="imagem" type="file" accept="image/jpeg,image/png,image/webp">
+          <small class="field-help">Opcional. JPG, PNG ou WEBP até 2 MB.</small>
+          <?php if (!empty($vinhoEdicao['imagem'])): ?>
+            <img src="<?= escapar($vinhoEdicao['imagem']) ?>" alt="Foto atual do vinho" class="vinho-preview">
+          <?php endif; ?>
+        </div>
         <button type="submit" class="pill-btn pill-primary submit-btn"><?= $vinhoEdicao ? 'Salvar Alterações' : 'Cadastrar Vinho' ?></button>
         <?php if ($vinhoEdicao): ?>
           <a href="painel.php" class="text-link">Cancelar edição</a>
@@ -89,6 +100,7 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
           <table class="tabela-vinhos">
             <thead>
               <tr>
+                <th>Foto</th>
                 <th>Nome</th>
                 <th>Tipo</th>
                 <th>País</th>
@@ -100,6 +112,13 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
             <tbody>
               <?php foreach ($vinhos as $vinho): ?>
                 <tr>
+                  <td>
+                    <?php if (!empty($vinho['imagem'])): ?>
+                      <img src="<?= escapar($vinho['imagem']) ?>" alt="Foto de <?= escapar($vinho['nome']) ?>" class="thumb-vinho">
+                    <?php else: ?>
+                      <span class="thumb-placeholder"><i class="bi bi-image"></i></span>
+                    <?php endif; ?>
+                  </td>
                   <td><?= escapar($vinho['nome']) ?></td>
                   <td><?= escapar($vinho['tipo']) ?></td>
                   <td><?= escapar($vinho['pais']) ?></td>

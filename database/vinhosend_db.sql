@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS vinhos (
   safra INT NOT NULL,
   nota DECIMAL(3,1) NOT NULL,
   descricao TEXT NULL,
+  imagem VARCHAR(255) NULL,
   criado_em DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   atualizado_em DATETIME NULL,
   CONSTRAINT fk_vinhos_usuarios FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE

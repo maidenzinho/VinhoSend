@@ -33,6 +33,7 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
         <table class="tabela-vinhos">
           <thead>
             <tr>
+              <th>Foto</th>
               <th>Anúncio</th>
               <th>Vendedor</th>
               <th>Qtd.</th>
@@ -45,6 +46,13 @@ require __DIR__ . '/visoes/parciais/cabecalho.php';
           <tbody>
             <?php foreach ($compras as $compra): ?>
               <tr>
+                <td>
+                  <?php if (!empty($compra['imagem'])): ?>
+                    <img src="<?= escapar($compra['imagem']) ?>" alt="Foto de <?= escapar($compra['vinho_nome']) ?>" class="thumb-vinho">
+                  <?php else: ?>
+                    <span class="thumb-placeholder"><i class="bi bi-image"></i></span>
+                  <?php endif; ?>
+                </td>
                 <td><?= escapar($compra['titulo']) ?></td>
                 <td><?= escapar($compra['vendedor_nome']) ?></td>
                 <td><?= escapar((string)$compra['quantidade']) ?></td>

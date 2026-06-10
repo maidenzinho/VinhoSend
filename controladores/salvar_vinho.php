@@ -6,6 +6,7 @@ require_once __DIR__ . '/../repositorios/VinhoRepositorio.php';
 require_once __DIR__ . '/../repositorios/AuditoriaRepositorio.php';
 require_once __DIR__ . '/../modelos/Vinho.php';
 require_once __DIR__ . '/../servicos/Validador.php';
+require_once __DIR__ . '/../servicos/UploadImagemServico.php';
 
 exigir_login();
 validar_csrf();
@@ -21,12 +22,21 @@ try {
     $descricao = Validador::texto($_POST['descricao'] ?? '', 0, 1000, 'Descrição');
 
     $repo = new VinhoRepositorio();
-    $vinho = new Vinho($id, $usuarioId, $nome, $tipo, $pais, $safra, $nota, $descricao);
+    $imagemAtual = null;
 
     if ($id) {
-        if (!$repo->buscarDoUsuario($id, $usuarioId)) {
+        $vinhoExistente = $repo->buscarDoUsuario($id, $usuarioId);
+        if (!$vinhoExistente) {
             throw new InvalidArgumentException('Vinho não encontrado para este usuário.');
         }
+        $imagemAtual = $vinhoExistente['imagem'] ?? null;
+    }
+
+    // Requisito: upload seguro. Só JPG, PNG e WEBP até 2 MB são aceitos.
+    $imagem = UploadImagemServico::salvarImagemVinho($_FILES['imagem'] ?? [], $imagemAtual);
+    $vinho = new Vinho($id, $usuarioId, $nome, $tipo, $pais, $safra, $nota, $descricao, $imagem);
+
+    if ($id) {
         $repo->atualizar($vinho);
         (new AuditoriaRepositorio())->registrar($usuarioId, 'ATUALIZAR_VINHO', 'Vinho atualizado: ' . $nome);
         redirecionar_com_mensagem('../painel.php', 'sucesso', 'Vinho atualizado com sucesso.');
